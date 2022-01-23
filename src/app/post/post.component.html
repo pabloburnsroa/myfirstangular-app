@@ -1,0 +1,12 @@
+<a routerLink="/posts" class="btn btn-light btn-sm mb-3">Back to posts</a>
+
+<div *ngIf="post" class="card">
+  <div class="card-body">
+    <h3>{{ post.title }}</h3>
+    <h3>{{ post.body }}</h3>
+  </div>
+</div>
+
+<button class="btn btn-dark btn-sm mt-3" (click)="goBack()">
+  go back using the Location service
+</button>

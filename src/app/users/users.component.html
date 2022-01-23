@@ -1,0 +1,41 @@
+<h2>Users</h2>
+<div class="d-grid gap-2">
+  <button
+    [disabled]="!enableAdd"
+    type="button"
+    class="btn mb-3"
+    [ngClass]="currentClasses"
+  >
+    Add New User
+  </button>
+</div>
+<ul class="list-unstyled" *ngIf="loaded && users.length > 0">
+  <!-- Class binding to add/remove CSS class names from an elements class attribute [class] = "expression"-->
+  <li
+    class="card card-body mb-2"
+    *ngFor="let user of users"
+    [class.bg-light]="user.isActive"
+  >
+    <div class="row">
+      <div class="col-sm-4">
+        <!-- Property Binding Example [src]="user.image" Right hand side of the [] is evaulated as dynamic expression-->
+        <img *ngIf="user.image" class="img-fluid" [src]="user.image" alt="" />
+      </div>
+      <div class="col-sm-8">
+        <h3>
+          {{ user.firstName }} {{ user.lastName }}
+          <small
+            ><button (click)="toggleExtended(user)" class="fas fa-plus"></button
+          ></small>
+        </h3>
+        <ul class="list-group" *ngIf="showExtended">
+          <li class="list-group-item">Age: {{ user.age }}</li>
+          <li class="list-group-item">
+            Address: {{ user.address.street }} {{ user.address.city }}
+            {{ user.address.state }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
